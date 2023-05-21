@@ -1,24 +1,16 @@
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Test");
-        System.out.println();// print empty string
+        //First Task
+        System.out.println("First Task");
+        PersonalData.showPersonalData();
 
-        //writes a sentence in one line
-        System.out.print("This is ");
-        System.out.print("the use of");
-        System.out.print(" \"print()\" ");
-        System.out.print("in one line.");
-        System.out.print("\n"); // use enter or carriage return
-        System.out.print("On new string.");
-        System.out.print("\n"); // use enter or carriage return
-        System.out.print(""); // print "nothing". System.out.print() - error
-        System.out.print("\n");
+        //Second Task
+        System.out.println("\nSecond Task");
+        SymToNumConverter.showSymbolAndNumber();
 
-        //writes a sentence in multiple lines
-        System.out.println("This is the ");
-        System.out.println("use of \"println()\" ");
-        System.out.println("in multiple lines.");
-
+        //Third Task
+        System.out.println("\nThird Task");
+        BodyMassIndex.showBMI();
     }
 }
