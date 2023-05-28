@@ -1,204 +1,116 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        //Task 1.1
-        System.out.println("Task 1.1");
-        System.out.println(printSeasonByMonthNumberSwitch());
-        //Task 1.2
-        System.out.println("\nTask 1.2");
-        printSeasonByMonthNumberIfElse();
-        //Task 1.3
-        System.out.println("\nTask 1.3");
-        checkEvenNumber();
-        //Task 1.4
-        System.out.println("\nTask 1.4");
-        checkTemperature();
-        //Task 1.5
-        System.out.println("\nTask 1.5");
-        System.out.println(defineRainbowColor());
+        System.out.println("\t\t===Main task===");
+        //Task 0
+        System.out.println("Task 0");
+        int[] arrayFor0Task = createSimpleArray(10);
+        System.out.println(Arrays.toString(arrayFor0Task));
+        checkNumberInArray(arrayFor0Task);
 
-        //Task 2.1
-        System.out.println("\nTask 2.1");
-        printOddNumber();
-        //Task 2.2
-        System.out.println("\nTask 2.2");
-        printDecrementNumbers();
-        //Task 2.3
-        System.out.println("\nTask 2.3");
-        System.out.println(sumUntilNumber());
-        //Task 2.4
-        System.out.println("\nTask 2.4");
-        printPow7Sequence();
-        //Task 2.5
-        System.out.println("\nTask 2.5");
-        printDescentSequence();
-        //Task 2.6
-        System.out.println("\nTask 2.6");
-        printSquaresOfNumbers();
+        //Task 1
+        System.out.println("\nTask 1");
+        int[] arrayFor1Task1 = new int[] {1,2,3,4,5,6,1,7,1,9};
+        System.out.println(Arrays.toString(arrayFor1Task1));
+        int[] arrayFor1Task2 = removeNumbersInArray(arrayFor1Task1);
+        System.out.println(Arrays.toString(arrayFor1Task2));
 
-        //Task 3.1
-        System.out.println("\nTask 3.1");
-        printFibonacciSequence();
-        //Task 3.2
-        System.out.println("\nTask 3.2");
-        calculateBankOperation();
-        //Task 3.3
-        System.out.println("\nTask 3.3");
-        printMultiplicationTable();
+        //Task 2
+        System.out.println("\nTask 2");
+        int[] arrayFor2Task = createRandomArray();
+        System.out.println(Arrays.toString(arrayFor2Task));
+        findMaxMinAverageValue(arrayFor2Task);
+
+        //Task 3
+        System.out.println("\nTask 3");
+        int[] arrayFor3Task1 = createRandomArray(5);
+        int[] arrayFor3Task2 = createRandomArray(5);
+        System.out.println("First array: " + Arrays.toString(arrayFor3Task1));
+        System.out.println("Second array: " + Arrays.toString(arrayFor3Task2));
+        compareValues(findAverageValue(arrayFor3Task1), findAverageValue(arrayFor3Task2));
+
+        System.out.println("\n\t\t===Additional task==");
+
     }
 
     public static Scanner cin() {
         return new Scanner(System.in);
     }
 
-    public static String printSeasonByMonthNumberSwitch(){
-        System.out.print("Please, enter a month number: ");
+    public static int[] createSimpleArray(int size) {
+        int[] array = new int[size];
 
-        switch(cin().nextInt()) {
-            case 1, 2, 12: return "Winter";
-            case 3, 4, 5: return "Spring";
-            case 6, 7, 8: return "Summer";
-            case 9, 10, 11: return "Autumn";
-            default: return "It's not a month number";
+        for (int i = 0; i < size; i++) {
+            array[i] = i + 1;
         }
 
+        return array;
     }
 
-    public static void printSeasonByMonthNumberIfElse() {
-        System.out.print("Please, enter a month number: ");
-        int numberOfMonth = cin().nextInt();
-
-        if(numberOfMonth == 1 || numberOfMonth == 2 || numberOfMonth == 12){
-            System.out.println("Winter");
-        } else if (numberOfMonth >= 3 && numberOfMonth <= 5) {
-            System.out.println("Spring");
-        } else if (numberOfMonth >= 6 && numberOfMonth <= 8) {
-            System.out.println("Summer");
-        } else if (numberOfMonth >= 9 && numberOfMonth <= 11) {
-            System.out.println("Autumn");
-        } else System.out.println("It's not a month number");
-    }
-
-    public static void checkEvenNumber() {
+    public static void checkNumberInArray(int[] array) {
         System.out.print("Please, enter a number: ");
-
-        System.out.println((cin().nextInt() % 2 == 0) ? "It's an even number." : "It's an odd number.");
+        int number = cin().nextInt();
+        System.out.println(Arrays.binarySearch(array, number) < 0 ? "Array doesn't contain this number" : "Array contains this number");
     }
 
-    public static void checkTemperature() {
-        System.out.print("Please, enter a temperature: ");
-
-        int t = cin().nextInt();
-
-        if (t > -5) System.out.println("Тепло");
-        else if (-5 >= t && t > -20) System.out.println("Нормально");
-        else if (-20 >= t) System.out.println("Холодно");
-        else System.out.println("Please, check your input.");
-    }
-
-    public static String defineRainbowColor() {
-        System.out.print("Please, enter a rainbow color number: ");
-
-        switch (cin().nextInt()) {
-            case 1: return "Red";
-            case 2: return "Orange";
-            case 3: return "Yellow";
-            case 4: return "Green";
-            case 5: return "Blue";
-            case 6: return "Indigo";
-            case 7: return "Violet";
-            default: return "It's not a rainbow color number";
+    public static int[] removeNumbersInArray(int[] array) {
+        System.out.print("Please, enter a number to delete: ");
+        int counter = 0;
+        int number = cin().nextInt();
+        for (int i = 0, j = 0; i < array.length; i++){
+            if (array[i] == number) {
+                counter++;
+            } else array[j++] = array[i];
         }
-    }
-
-    public static void printOddNumber() {
-        for (int i = 1; i < 99; i++) {
-            if (i % 2 != 0) System.out.print(i + " ");
+        if (counter == 0) {
+            System.out.println("This number is not in the array");
         }
+        return Arrays.copyOf(array, array.length-counter);
     }
 
-    public static void printDecrementNumbers() {
-        for (int i = 5; i > 1; i--) System.out.print(i + " ");
-    }
-
-    public static int sumUntilNumber() {
-        int number;
-        while (true) {
-            System.out.print("Please, enter a positive integer number: ");
-            number = cin().nextInt();
-            if (number > 0) break;
-            else System.out.println("Check your input number");
+    public static int[] createRandomArray() {
+        System.out.print("Please, enter a size of array: ");
+        int size = cin().nextInt();
+        int[] array = new int[size];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (int)(0 + Math.random() * 10);
         }
 
-        int sum = 0;
-        for (int i = 1; i < number; i++) {
-            sum += i;
-        }
-
-        return sum;
+        return array;
     }
 
-    public static void printPow7Sequence() {
-        int number = 0;
-
-        while (number < 98) {
-            System.out.print((number += 7) + " ");
+    public static int[] createRandomArray(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (int)(0 + Math.random() * 10);
         }
 
+        return array;
     }
 
-    public static void printDescentSequence() {
-        for (int i = 0, seqMember = 0; i < 10; i++, seqMember -= 5) {
-            System.out.print(seqMember + " ");
-        }
+    public static double findAverageValue(int [] array) {
+            double sum = 0;
+            for (int element : array) sum += element;
+
+            return sum / array.length;
     }
 
-    public static void printSquaresOfNumbers() {
-        for (int i = 10; i <= 20; i++) {
-            System.out.printf("Square %d is %.0f\n", i, Math.pow(i, 2));
-        }
+    public static void findMaxMinAverageValue(int[] array) {
+        Arrays.sort(array);
+
+        int minValue = array[0];
+        int maxValue = array[array.length - 1];
+
+        System.out.printf("Min value is %d,\nMax value is %d,\nAverage value is %.1f\n", minValue, maxValue, findAverageValue(array));
     }
 
-    public static void printFibonacciSequence() {
-        int first = 0;
-        int second = 1;
-        int result;
-        System.out.print("Fibonacci sequence: " + first + " " + second + " ");
-        for (int i = 1; i < 10; i++) {
-            result = first + second;
-            first = second;
-            second = result;
-            System.out.print(result + " ");
-        }
-
-    }
-
-    public static void calculateBankOperation() {
-        System.out.print("Please, enter a deposit amount: ");
-        float deposit = cin().nextFloat();
-
-        System.out.print("Please, enter a month: ");
-        int month = cin().nextInt();
-
-        float resultDeposit = 0;
-
-        for (int i = 0; i < month; i++) {
-            resultDeposit += (deposit * 0.07);
-        }
-
-        resultDeposit += deposit;
-
-        System.out.println("Finally deposit amount: " + resultDeposit);
-    }
-
-    public static void printMultiplicationTable() {
-        for (int i = 1; i < 10; i++ ){
-            for (int j = 1; j < 10; j++){
-                System.out.printf("%d * %d = %d\n", i, j, i * j);
-            }
-            System.out.println();
-        }
+    public static void compareValues(double firstValue, double secondValue) {
+        System.out.println(firstValue > secondValue ?
+                "The first average value (" + firstValue +") is greater than the second one (" + secondValue + ")" :
+                (firstValue < secondValue) ? "The second average value (" + secondValue +") is greater than the first one (" + firstValue + ")" :
+                "These values are equal.");
     }
 }
