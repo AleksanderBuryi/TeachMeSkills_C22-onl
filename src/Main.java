@@ -50,6 +50,13 @@ public class Main {
         System.out.println("\nTask 6");
         sortNameArray();
 
+        //Task 7
+        System.out.println("\nTask 7");
+        int[] arrayFor7Task = createRandomArray(10);
+        System.out.println(Arrays.toString(arrayFor7Task));
+        bubbledSort(arrayFor7Task);
+        System.out.println(Arrays.toString(arrayFor7Task));
+
     }
 
     public static Scanner cin() {
@@ -167,5 +174,21 @@ public class Main {
         System.out.println(Arrays.toString(names));
         Arrays.sort(names);
         System.out.println(Arrays.toString(names));
+    }
+
+    public static void bubbledSort(int[] array) {
+        boolean sorted = false;
+        int temp;
+        while(!sorted) {
+            sorted = true;
+            for(int i = 0; i < array.length-1; i++) {
+                if (array[i] > array[i+1]) {
+                    temp = array[i];
+                    array[i] = array[i+1];
+                    array[i+1] = temp;
+                    sorted = false;
+                }
+            }
+        }
     }
 }
