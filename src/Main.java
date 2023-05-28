@@ -33,6 +33,12 @@ public class Main {
         compareValues(findAverageValue(arrayFor3Task1), findAverageValue(arrayFor3Task2));
 
         System.out.println("\n\t\t===Additional task==");
+        //Task 4
+        System.out.println("Task 4");
+        int[] arrayFor4Task1 = createRandomArrayWithCondition();
+        System.out.println(Arrays.toString(arrayFor4Task1));
+        int[] arrayFor4Task2 = getArrayOfEvenElements(arrayFor4Task1);
+        System.out.println(Arrays.toString(arrayFor4Task2));
 
     }
 
@@ -112,5 +118,30 @@ public class Main {
                 "The first average value (" + firstValue +") is greater than the second one (" + secondValue + ")" :
                 (firstValue < secondValue) ? "The second average value (" + secondValue +") is greater than the first one (" + firstValue + ")" :
                 "These values are equal.");
+    }
+
+    public static int[] createRandomArrayWithCondition(){
+        while (true) {
+            System.out.print("Please, enter a size of array: ");
+            int n = cin().nextInt();
+            if (n > 5 && n <= 10) {
+                return createRandomArray(n);
+            } else System.out.println("You entered an out-of-range size.");
+        }
+    }
+
+    public static int[] getArrayOfEvenElements(int[] array) {
+        int counter = 0;
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
+                counter++;
+                array[j++] = array[i];
+            }
+        }
+
+        if (counter == 0) {
+            System.out.println("This array consists of odd numbers.");
+        }
+        return Arrays.copyOf(array, counter);
     }
 }
