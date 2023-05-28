@@ -40,6 +40,12 @@ public class Main {
         int[] arrayFor4Task2 = getArrayOfEvenElements(arrayFor4Task1);
         System.out.println(Arrays.toString(arrayFor4Task2));
 
+        //Task 5
+        System.out.println("\nTask 5");
+        int[] arrayFor5Task1 = createRandomArray(10);
+        System.out.println(Arrays.toString(arrayFor5Task1));
+        System.out.println(Arrays.toString(replaceValuesOnNil(arrayFor5Task1)));
+
     }
 
     public static Scanner cin() {
@@ -143,5 +149,12 @@ public class Main {
             System.out.println("This array consists of odd numbers.");
         }
         return Arrays.copyOf(array, counter);
+    }
+
+    public static int[] replaceValuesOnNil(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (i % 2 == 1) array[i] = 0;
+        }
+        return array;
     }
 }
