@@ -46,6 +46,10 @@ public class Main {
         System.out.println(Arrays.toString(arrayFor5Task1));
         System.out.println(Arrays.toString(replaceValuesOnNil(arrayFor5Task1)));
 
+        //Task 6
+        System.out.println("\nTask 6");
+        sortNameArray();
+
     }
 
     public static Scanner cin() {
@@ -156,5 +160,12 @@ public class Main {
             if (i % 2 == 1) array[i] = 0;
         }
         return array;
+    }
+
+    public static void sortNameArray() {
+        String[] names = { "Rita", "Aleksandr", "Sergei", "Vadim", "Masha", "Andrew"};
+        System.out.println(Arrays.toString(names));
+        Arrays.sort(names);
+        System.out.println(Arrays.toString(names));
     }
 }
