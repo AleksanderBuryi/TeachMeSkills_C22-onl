@@ -4,105 +4,57 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("\t\t===Main task===");
-        //Task 0
-        System.out.println("Task 0");
-        int[] arrayFor0Task = createSimpleArray(10);
-        System.out.println(Arrays.toString(arrayFor0Task));
-        checkNumberInArray(arrayFor0Task);
-
+        System.out.println("\t\t===Main Task===");
         //Task 1
-        System.out.println("\nTask 1");
-        int[] arrayFor1Task1 = new int[] {1,2,3,4,5,6,1,7,1,9};
-        System.out.println(Arrays.toString(arrayFor1Task1));
-        int[] arrayFor1Task2 = removeNumbersInArray(arrayFor1Task1);
-        System.out.println(Arrays.toString(arrayFor1Task2));
+        System.out.println("Task 1");
+        int [][][] array1 = create3DRandomArray(2,2,3);
+        System.out.println(Arrays.deepToString(array1));
+        increaseValuesOf3DArray(array1);
 
         //Task 2
-        System.out.println("\nTask 2");
-        int[] arrayFor2Task = createRandomArray();
-        System.out.println(Arrays.toString(arrayFor2Task));
-        findMaxMinAverageValue(arrayFor2Task);
+        System.out.println("Task 2");
+        drawChessBoard();
 
+        System.out.println("\n\t\t===Additional Task===");
         //Task 3
-        System.out.println("\nTask 3");
-        int[] arrayFor3Task1 = createRandomArray(5);
-        int[] arrayFor3Task2 = createRandomArray(5);
-        System.out.println("First array: " + Arrays.toString(arrayFor3Task1));
-        System.out.println("Second array: " + Arrays.toString(arrayFor3Task2));
-        compareValues(findAverageValue(arrayFor3Task1), findAverageValue(arrayFor3Task2));
+        System.out.println("Task 3");
+        int[][] matrix1 = create2DRandomArray(3, 3);
+        int[][] matrix2 = create2DRandomArray(3, 3);
+/*        //matrices from example
+        int[][] matrix1 = {{1,0,0,0},{0,1,0,0}, {0,0,0,0}};
+        int[][] matrix2 = {{1,2,3}, {1,1,1}, {0,0,0}, {2,1,0}};
+*/
+        System.out.println("First matrix: ");
+        showMatrix(matrix1);
+        System.out.println("Second matrix: ");
+        showMatrix(matrix2);
+        System.out.println("Result: ");
+        showMatrix(multiply(matrix1, matrix2));
 
-        System.out.println("\n\t\t===Additional task==");
         //Task 4
-        System.out.println("Task 4");
-        int[] arrayFor4Task1 = createRandomArrayWithCondition();
-        System.out.println(Arrays.toString(arrayFor4Task1));
-        int[] arrayFor4Task2 = getArrayOfEvenElements(arrayFor4Task1);
-        System.out.println(Arrays.toString(arrayFor4Task2));
+        System.out.println("\nTask 4");
+        int[][] array4 = create2DRandomArray(3, 4);
+        showMatrix(array4);
+        System.out.println("Sum of all array elements: " + sumAllValuesOfArray(array4));
 
         //Task 5
         System.out.println("\nTask 5");
-        int[] arrayFor5Task1 = createRandomArray(10);
-        System.out.println(Arrays.toString(arrayFor5Task1));
-        System.out.println(Arrays.toString(replaceValuesOnNil(arrayFor5Task1)));
+        int[][] array5 = create2DRandomArray(3, 3);
+        showMatrix(array5);
+        showMatrixDiagonal(array5);
 
         //Task 6
         System.out.println("\nTask 6");
-        sortNameArray();
-
-        //Task 7
-        System.out.println("\nTask 7");
-        int[] arrayFor7Task = createRandomArray(10);
-        System.out.println(Arrays.toString(arrayFor7Task));
-        bubbledSort(arrayFor7Task);
-        System.out.println(Arrays.toString(arrayFor7Task));
+        int[][] array6 = create2DRandomArray(3,3);
+        showMatrix(array6);
+        sortMatrix(array6);
+        System.out.println();
+        showMatrix(array6);
 
     }
 
-    public static Scanner cin() {
+    public static Scanner cin(){
         return new Scanner(System.in);
-    }
-
-    public static int[] createSimpleArray(int size) {
-        int[] array = new int[size];
-
-        for (int i = 0; i < size; i++) {
-            array[i] = i + 1;
-        }
-
-        return array;
-    }
-
-    public static void checkNumberInArray(int[] array) {
-        System.out.print("Please, enter a number: ");
-        int number = cin().nextInt();
-        System.out.println(Arrays.binarySearch(array, number) < 0 ? "Array doesn't contain this number" : "Array contains this number");
-    }
-
-    public static int[] removeNumbersInArray(int[] array) {
-        System.out.print("Please, enter a number to delete: ");
-        int counter = 0;
-        int number = cin().nextInt();
-        for (int i = 0, j = 0; i < array.length; i++){
-            if (array[i] == number) {
-                counter++;
-            } else array[j++] = array[i];
-        }
-        if (counter == 0) {
-            System.out.println("This number is not in the array");
-        }
-        return Arrays.copyOf(array, array.length-counter);
-    }
-
-    public static int[] createRandomArray() {
-        System.out.print("Please, enter a size of array: ");
-        int size = cin().nextInt();
-        int[] array = new int[size];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (int)(0 + Math.random() * 10);
-        }
-
-        return array;
     }
 
     public static int[] createRandomArray(int size) {
@@ -114,81 +66,142 @@ public class Main {
         return array;
     }
 
-    public static double findAverageValue(int [] array) {
-            double sum = 0;
-            for (int element : array) sum += element;
+    public static int[][] create2DRandomArray(int size1, int size2) {
+        int[][] array = new int[size1][size2];
 
-            return sum / array.length;
-    }
-
-    public static void findMaxMinAverageValue(int[] array) {
-        Arrays.sort(array);
-
-        int minValue = array[0];
-        int maxValue = array[array.length - 1];
-
-        System.out.printf("Min value is %d,\nMax value is %d,\nAverage value is %.1f\n", minValue, maxValue, findAverageValue(array));
-    }
-
-    public static void compareValues(double firstValue, double secondValue) {
-        System.out.println(firstValue > secondValue ?
-                "The first average value (" + firstValue +") is greater than the second one (" + secondValue + ")" :
-                (firstValue < secondValue) ? "The second average value (" + secondValue +") is greater than the first one (" + firstValue + ")" :
-                "These values are equal.");
-    }
-
-    public static int[] createRandomArrayWithCondition(){
-        while (true) {
-            System.out.print("Please, enter a size of array: ");
-            int n = cin().nextInt();
-            if (n > 5 && n <= 10) {
-                return createRandomArray(n);
-            } else System.out.println("You entered an out-of-range size.");
-        }
-    }
-
-    public static int[] getArrayOfEvenElements(int[] array) {
-        int counter = 0;
-        for (int i = 0, j = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0) {
-                counter++;
-                array[j++] = array[i];
-            }
+        for (int i = 0; i < size1; i++) {
+            array[i] = createRandomArray(size2);
         }
 
-        if (counter == 0) {
-            System.out.println("This array consists of odd numbers.");
-        }
-        return Arrays.copyOf(array, counter);
-    }
-
-    public static int[] replaceValuesOnNil(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            if (i % 2 == 1) array[i] = 0;
-        }
         return array;
     }
 
-    public static void sortNameArray() {
-        String[] names = { "Rita", "Aleksandr", "Sergei", "Vadim", "Masha", "Andrew"};
-        System.out.println(Arrays.toString(names));
-        Arrays.sort(names);
-        System.out.println(Arrays.toString(names));
+    public static int[][][] create3DRandomArray(int size1, int size2, int size3) {
+        int[][][] newArray = new int[size1][size2][size3];
+
+        for (int i = 0; i < size1; i++){
+            for (int j = 0; j < size2; j++){
+                    newArray[i][j] = createRandomArray(size3);
+            }
+        }
+
+        return newArray;
     }
 
-    public static void bubbledSort(int[] array) {
-        boolean sorted = false;
-        int temp;
-        while(!sorted) {
-            sorted = true;
-            for(int i = 0; i < array.length-1; i++) {
-                if (array[i] > array[i+1]) {
-                    temp = array[i];
-                    array[i] = array[i+1];
-                    array[i+1] = temp;
-                    sorted = false;
+    public static void increaseValuesOf3DArray(int [][][] array) {
+        System.out.print("Please, enter a value to increase array elements: ");
+        int number = cin().nextInt();
+
+        for (int[][] arrayMiddle: array){
+            for (int[] arrayInternal: arrayMiddle) {
+                for (int item: arrayInternal) {
+                    System.out.print((item + number) + " ");
+                }
+                System.out.print("\t");
+            }
+            System.out.println("\n");
+        }
+    }
+
+    public static void drawChessBoard() {
+        String[][] chessBoard = new String[8][8];
+
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++) {
+                if ((i + j) % 2 == 0)
+                    chessBoard[i][j] = "W";
+                else
+                    chessBoard[i][j] = "B";
+            }
+        }
+
+        showMatrix(chessBoard);
+    }
+
+    public static int[][] multiply(int[][] matrixA, int[][] matrixB) {
+        int[][] matrixM = new int[matrixA.length][matrixB[0].length];
+        for (int i = 0; i < matrixM.length; i++) {
+            for (int j = 0; j < matrixM[i].length; j++) {
+                matrixM[i][j] = 0;
+                for (int k = 0; k < matrixA[i].length; k++) {
+                    matrixM[i][j] += matrixA[i][k] * matrixB[k][j];
                 }
             }
         }
+        return matrixM;
     }
+
+    public static int sumAllValuesOfArray(int[][] array) {
+        int sum = 0;
+        for (int[] rows : array) {
+            for (int el : rows) {
+                sum += el;
+            }
+        }
+        return sum;
+    }
+
+    public static void showMatrixDiagonal(int[][] array) {
+        int size = Math.min(array.length, array[0].length);
+        int[] mainDiagonal = new int[size];
+        for (int i = 0, k = 0; i < size; i++) {
+                mainDiagonal[k++] = array[i][i];
+        }
+        System.out.println("Main diagonal of the array: " + Arrays.toString(mainDiagonal));
+
+        int[] sideDiagonal = new int[size];
+        if (array.length > array[0].length) {
+            for (int i = size, k = 0; i > 0; i--) {
+                sideDiagonal[k++] = array[i][size - i];
+            }
+        } else {
+            for (int i = size - 1, k = 0; i >= 0; i--) {
+                sideDiagonal[k++] = array[i][size - 1 - i];
+            }
+        }
+        System.out.println("Side diagonal of the array: " + Arrays.toString(sideDiagonal));
+    }
+
+// sort all matrix elements
+//    public static void sortFullMatrix(int[][] matrix) {
+//        int[] fullTempArray = new int[matrix.length * matrix[0].length];
+//        for (int i = 0, k = 0; i < matrix.length; i++) {
+//            for (int j = 0; j < matrix[i].length; j++) {
+//                fullTempArray[k++] = matrix[i][j];
+//            }
+//        }
+//        Arrays.sort(fullTempArray);
+//
+//        for (int i = 0, k = 0; i < matrix.length; i++) {
+//            for (int j = 0; j < matrix[i].length; j++) {
+//                matrix[i][j] = fullTempArray[k++];
+//            }
+//        }
+//    }
+
+    public static void sortMatrix(int[][] matrix) {
+        for (int[] rows : matrix) {
+            Arrays.sort(rows);
+        }
+    }
+
+    public static void showMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[i].length; j++){
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void showMatrix(String[][] matrix) {
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[i].length; j++){
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }
+
