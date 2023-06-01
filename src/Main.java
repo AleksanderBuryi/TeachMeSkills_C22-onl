@@ -76,6 +76,7 @@ public class Main {
     public static void checkNumberInArray(int[] array) {
         System.out.print("Please, enter a number: ");
         int number = cin().nextInt();
+        Arrays.sort(array);
         System.out.println(Arrays.binarySearch(array, number) < 0 ? "Array doesn't contain this number" : "Array contains this number");
     }
 
