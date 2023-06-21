@@ -3,12 +3,17 @@ package hw8_2_task2;
 public class Main {
     public static void main(String[] args){
         System.out.println("\t\t===Main task. Homework 8_2. Task 2===");
-        //Task 2
-        /*
-        2. Создать классы "Директор", "Рабочий", "Бухгалтер".
-        Реализовать интерфейс с методом, который печатает название
-        должности и имплементировать этот метод в созданные классы.
-        */
-        //todo Пока что задания с интерфейсами не делать!
+        Employee director = new Director();
+        System.out.print("Director position: ");
+        director.printPosition();
+
+        Employee accountant = new Accountant("Accountant");
+        System.out.print("Accountant position: ");
+        accountant.printPosition();
+
+        Employee worker = new Worker();
+        System.out.print("Worker position: ");
+        worker.printPosition();
+
     }
 }
