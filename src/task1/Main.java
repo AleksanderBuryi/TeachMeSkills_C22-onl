@@ -8,7 +8,7 @@ import task1.prevTask.ManipulatedString;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("\n\t\t\t=== Homework 11. MainPrev Task. Task 1 ===\n");
+        System.out.println("\n\t\t\t=== Homework 11. Main Task. Task 1 ===\n");
 
         String str = "1234-qWe-5678-yhN-1a2b";
         System.out.print("Origin document number: " + str + "\n\n");
