@@ -1,4 +1,4 @@
-package task1;
+package task1.prevTask;
 
 import java.util.Scanner;
 
