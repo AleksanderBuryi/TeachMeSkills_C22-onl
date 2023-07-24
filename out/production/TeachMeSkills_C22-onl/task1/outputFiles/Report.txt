@@ -1,0 +1,14 @@
+docnumd2d4d6d89 - Valid
+docnum1234avdr9 - Valid
+kontract1234569 - Valid
+kontractSAD4569 - Valid
+kontractd2d4d69 - Valid
+docnum1c34c6c89 - Valid
+kontract1d3d5d9 - Valid
+kontract123456 -  length is not 15 characters.
+FORtract1234569 -  doesn't start with docnum or contract.
+docnum1234avdr39 -  length is not 15 characters.
+kontract123asd9 - Valid
+docnum123456789 - Valid
+POcnum1234avdr9 -  doesn't start with docnum or contract.
+docnumab$d56789 -  contains a non-letter/number.
