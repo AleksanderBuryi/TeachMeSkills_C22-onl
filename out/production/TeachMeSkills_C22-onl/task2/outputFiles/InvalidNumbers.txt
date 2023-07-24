@@ -1,5 +1,0 @@
-POcnum1234avdr9 doesn't start with docnum or contract.
-docnumab$d56789 contains a non-letter/number.
-docnum1234avdr39 length is not 15 characters.
-FORtract1234569 doesn't start with docnum or contract.
-contract123456 length is not 15 characters.
