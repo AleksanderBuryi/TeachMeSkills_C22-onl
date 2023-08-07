@@ -1,52 +1,30 @@
 package task1;
 
-import java.util.Scanner;
+import task1.consoleMethods.*;
+import task1.interfaces.*;
 
 public class Application {
 
-    private final ApplicationService service = new ApplicationService();
+    private final Reader reader = new ConsoleReader();
+    private final Writer writer = new ConsoleWriter();
+    private final Validator validator = new Validator();
 
     public void start() {
-        while(true) {
-            System.out.println("""
-                    
-                    1. Show source array
-                    2. Remove duplicates
-                    3. Output all even elements in the range from 7 to 17 (inclusive)
-                    4. Multiply each element by 2
-                    5. Sort and display the first 4 elements
-                    6. Display the number of elements in the stream
-                    7. Display the arithmetic mean of all numbers in the stream
-                    
-                    0. Exit
-                    """);
+        do {
+            writer.write("Enter ip-address: ");
+            String ip = reader.read();
 
-
-            int counter = getAnswer();
-
-            switch (counter) {
-                case 1 -> service.showSource();
-                case 2 -> service.deleteDuplicates();
-                case 3 -> service.getEvenNumbers();
-                case 4 -> service.multiply();
-                case 5 -> service.sortAndShow4Elements();
-                case 6 -> service.getAmountOfElements();
-                case 7 -> service.getAverage();
-                case 0 -> {
-                    return;
-                }
-                default -> throw new RuntimeException();
+            if (validator.validate(ip)) {
+                writer.write("ip-address is valid.");
+            } else {
+                writer.write("ip-address isn't valid");
             }
-        }
 
+        } while (continueQuestion());
     }
 
-    private int getAnswer() {
-        System.out.print("Enter a number: ");
-        return cin().nextInt();
-    }
-
-    private Scanner cin() {
-        return new Scanner(System.in);
+    private boolean continueQuestion() {
+        writer.write("\nContinue? 1 - yes, not 1 - no\n");
+        return reader.read().equals("1");
     }
 }
